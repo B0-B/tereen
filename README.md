@@ -1,4 +1,4 @@
-# Image to terminal render engine
+# RENDER ENGINE
 A barebone image to ASCII converter which adapts to unix terminal size.
 
 <img src='cyber.png'>
