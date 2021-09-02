@@ -1,12 +1,26 @@
 # Image to terminal render engine
-A colour supporting image to ASCII converter which adapts to unix terminal. 
+A barebone image to ASCII converter which adapts to unix terminal size.
 
-<img src='think.png'>
+<img src='cyber.png'>
+
+<br>
+
 <img src='cortana.png'>
+
+<br>
+<br>
 
 # Usage
 Set the terminal to the most optimal size
 ```bash
-render.py cortana.jpg
+render.py think.jpg
 ```
-in python you have to import the image funtion in order to create an animation.
+<img src='think.png'>
+
+Import allows to use the module in full fashion
+
+```python
+from render import image
+# print with filled ascii (better for high resolution images)
+image('cyber.png', printer=True, filled=True)
+```

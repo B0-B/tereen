@@ -4,7 +4,7 @@ from shutil import get_terminal_size
 from random import choice
 
 
-def image(path, color=True, floor=[0,0,0], shade="-~%9@###"):
+def image(path, color=True, floor=[0,0,0], printer=False, shade="-~%9@###", filled=False):
     with Image.open(path) as img:
         # get geometry of image and terminal
         map = img.load()
@@ -16,12 +16,12 @@ def image(path, color=True, floor=[0,0,0], shade="-~%9@###"):
         if w/wt < 2: stepX = 2
         else: stepX = int(w/wt)+1
         stepY = int(ycorr*stepX)
-        print('step', stepX)
         rngX, rngY, step_inv, white_inv = range(stepX), range(stepY), 1./stepX, 1/25.5
         if stepX < stepY: r = int(stepX/2) 
         else: r = int(stepY/2)
-        ascii = ''
-        print(f'image size: {w}x{h}px\nterminal size: {wt}x{ht}px')
+        if filled and color: shade="█"
+        ascii, shade_length = '', len(shade)
+        #print(f'image size: {w}x{h}px\nterminal size: {wt}x{ht}px')
         for y in range(0,h,stepY):
             for x in range(0,w,stepX):
                 # sample a few pixel to estimate the color
@@ -36,10 +36,10 @@ def image(path, color=True, floor=[0,0,0], shade="-~%9@###"):
                 intensity_mean = int((0.3333*sum(col)*step_inv)*white_inv)
                 if color:
                     ascii += "\033[38;2;{};{};{}m{}\033[38;2;255;255;255m".format((col[0]+floor[0])%255, 
-                    (col[1]+floor[1])%255, (col[2]+floor[2])%255, shade[intensity_mean])
-                else: ascii += shade[intensity_mean]
+                    (col[1]+floor[1])%255, (col[2]+floor[2])%255, shade[intensity_mean%shade_length])
+                else: ascii += shade[intensity_mean%shade_length]
             ascii += '\n'
-        print(ascii)
+        if printer: print(ascii)
     return ascii
 
 if __name__ == '__main__':
@@ -48,4 +48,4 @@ if __name__ == '__main__':
     parser.add_argument('file', type=argparse.FileType('r'))
     args = parser.parse_args()
     path = args.file.name
-    image(path)
+    image(path, printer=True, filled=True)
