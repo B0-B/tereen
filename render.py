@@ -11,8 +11,8 @@ def image(path=None, imageObject=None, color=True, floor=[0,0,0], printer=False,
     '''
     Renders the image specified by path in terminal. The adaption to the terminal 
     happens by coarse graining a common mean field method to derive a transformed 
-    (lower resolved) lattice. To increase the performance the integration of colors 
-    per segments is achieved by a stratified integration (Montecarlo estimate).
+    (lower resolved) lattice. For performance sake the integration of colors 
+    per segment is obtained by a stratified sampler (random Montecarlo estimate).
 
     Arguments
     - path [string]: path to image file
@@ -59,7 +59,7 @@ def image(path=None, imageObject=None, color=True, floor=[0,0,0], printer=False,
 def gif(path, filled=True, delay=0.1, loop=False, **kwargs):
     
     '''
-    Renders a gif animation and plays it directly in terminal. 
+    Renders a gif animation and plays directly in terminal. 
     
     - filled [boolean]: Argument is True by default.
     - delay [float]: The time between frames in seconds.
