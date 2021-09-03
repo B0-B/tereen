@@ -1,4 +1,4 @@
-<h2 align=center><strong>RENDER ENGINE</strong></h2>
+<h2 align=center><strong>TERMINAL RENDER ENGINE</strong></h2>
 
 <p align=center>A barebone image to ASCII converter which adapts to unix terminal size.</p>
 
