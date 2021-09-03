@@ -2,14 +2,14 @@
 
 <p align=center>A barebone image to ASCII converter which adapts to unix terminal size.</p>
 
-<h1 align=center><img src='halo.gif'></h1>
+<h1 align=center><img src='showcase/halo.gif'></h1>
 
 <h2 align=center><strong>SHOWCASE</strong></h2>
-<img src='cyber.png'>
+<img src='showcase/cyber.png'>
 
 <br>
 
-<img src='cortana.png'>
+<img src='showcase/cortana.png'>
 
 <br>
 <br>
@@ -21,7 +21,7 @@ Set the terminal to the most optimal size
 ```bash
 render.py think.jpg
 ```
-<img src='think.png'>
+<img src='showcase/think.png'>
 
 
 
