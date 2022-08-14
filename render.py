@@ -56,7 +56,7 @@ def image(path=None, imageObject=None, color=True, floor=[0,0,0], printer=False,
     if printer: print(ascii)
     return ascii
 
-def gif(path, filled=True, delay=0.1, loop=False, **kwargs):
+def gif(path, filled=True, delay=0.1, loop=False, window=[0.0, 1.0], **kwargs):
     
     '''
     Renders a gif animation and plays directly in terminal. 
@@ -72,10 +72,12 @@ def gif(path, filled=True, delay=0.1, loop=False, **kwargs):
     im = Image.open(path)
     for frame in ImageSequence.Iterator(im):
         dias.append(
-            image(imageObject=frame.convert('RGB'), filled=True, **kwargs))
+            image(imageObject=frame.convert('RGB'), filled=filled, **kwargs))
+    size = len(dias)
     while True:
         try:
-            for t in range(len(dias)):
+            start, stop = int(max([0,window[0]])*size), int(min([1.0,window[1]])*size)
+            for t in range(start, stop):
                 print(dias[t])
                 sleep(d)
         except KeyboardInterrupt:
